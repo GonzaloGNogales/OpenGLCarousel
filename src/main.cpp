@@ -155,7 +155,7 @@ void drawPlane(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 void drawCone(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, -2.8, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.012, 0.068, 0.038));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.012, 0.062, 0.038));
     glm::mat4 R90 = glm::rotate(I, glm::radians(90.0f), glm::vec3(0, 0, 1));
     drawObject(cone,glm::vec3(1.0, 0.0, 0.0),P,V,M*R90*S*T);
 
@@ -164,7 +164,7 @@ void drawCone(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 void drawFrustum(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, 2.1, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.094, 0.027, 0.094));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.094, 0.27, 0.094));
     drawObject(cone,glm::vec3(0.9, 0.4, 0.0),P,V,M*S*T);
 
 }
@@ -227,7 +227,7 @@ void drawTop(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
-    glm::mat4 T = glm::translate(I, glm::vec3(0.0, 1.25, 0.0));
+    glm::mat4 T = glm::translate(I, glm::vec3(0.0, 1.3, 0.0));
     drawBase(P,V,M);
     drawFrustum(P,V,M);
     drawTop(P,V,M*T);
