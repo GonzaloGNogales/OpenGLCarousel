@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\InformaticaGraficaSesiones\Sesiones\OpenGLCarousel
+C:\Users\gonza\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.8194.17\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\gonza\CLionProjects\ComputerGraphics\practica1Good
 -- The C compiler identification is GNU 9.2.0
 -- The CXX compiler identification is GNU 9.2.0
 -- Check for working C compiler: C:/MinGW/bin/gcc.exe
@@ -15,4 +15,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug
+-- Build files have been written to: C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug

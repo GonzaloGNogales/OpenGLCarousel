@@ -1078,7 +1078,7 @@ OpenGL/glu.h
 GL/glu.h
 -
 
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Model.h
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Model.h
 iostream
 -
 vector
@@ -1096,7 +1096,7 @@ assimp/scene.h
 assimp/postprocess.h
 -
 
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Shaders.h
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Shaders.h
 iostream
 -
 fstream
@@ -1110,7 +1110,7 @@ glm/gtc/type_ptr.hpp
 glm/gtc/matrix_transform.hpp
 -
 
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/main.cpp
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/main.cpp
 iostream
 -
 ogl/glew.h
@@ -1118,7 +1118,7 @@ ogl/glew.h
 ogl/freeglut.h
 -
 Shaders.h
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Shaders.h
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Shaders.h
 Model.h
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Model.h
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Model.h
 

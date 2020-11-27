@@ -1,3 +1,3 @@
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug/CMakeFiles/practica1Good.dir
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug/CMakeFiles/practica1Good.dir
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug/CMakeFiles/rebuild_cache.dir

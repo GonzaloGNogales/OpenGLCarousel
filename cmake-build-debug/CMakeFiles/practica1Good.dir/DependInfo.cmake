@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Model.cpp" "C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug/CMakeFiles/practica1Good.dir/src/Model.cpp.obj"
-  "C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Shaders.cpp" "C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug/CMakeFiles/practica1Good.dir/src/Shaders.cpp.obj"
-  "C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/main.cpp" "C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug/CMakeFiles/practica1Good.dir/src/main.cpp.obj"
+  "C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Model.cpp" "C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug/CMakeFiles/practica1Good.dir/src/Model.cpp.obj"
+  "C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Shaders.cpp" "C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug/CMakeFiles/practica1Good.dir/src/Shaders.cpp.obj"
+  "C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/main.cpp" "C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug/CMakeFiles/practica1Good.dir/src/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -19,22 +19,22 @@ void drawCylinder(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawSphere(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawArm(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawTop(glm::mat4 P, glm::mat4 V, glm::mat4 M);
-void drawFrustum(glm::mat4 P, glm::mat4 V, glm::mat4 M);
+void drawBody(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawBase(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 
-// Shaders
-   Shaders shaders;
+ // Shaders
+    Shaders shaders;
 
-// Modelos
-   Model plane; //2*2*2
-   Model cone;  //5.37*4.85*5.37
-   Model cylinder;  //2*2*2
-   Model sphere;    //2*2*2
+ // Modelos
+    Model plane;     // 2*2*2
+    Model cone;      // 5.37*4.85*5.37
+    Model cylinder;  // 2*2*2
+    Model sphere;    // 2*2*2
 
-// Viewport
-   int w = 600;
-   int h = 600;
+ // Viewport
+    int w = 600;
+    int h = 600;
 
 int main(int argc, char** argv) {
 
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(w,h);
     glutInitWindowPosition(50,50);
-    glutCreateWindow("Sesion 5");
+    glutCreateWindow("Practica 1");
 
  // Inicializamos GLEW
     glewExperimental = GL_TRUE;
@@ -110,7 +110,7 @@ void funDisplay() {
     shaders.useShaders();
 
  // Matriz P
-    float fovy   = 60.0;
+    float fovy   = 30.0;
     float nplane = 0.1;
     float fplane = 25.0;
     float aspect = (float)w/(float)h;
@@ -122,8 +122,21 @@ void funDisplay() {
     glm::vec3 up(0.0, 1.0,  0.0);
     glm::mat4 V = glm::lookAt(pos, lookat, up);
 
+ // Matriz M1
+    glm::mat4 T1 = glm::translate(I, glm::vec3(2.0, 0.0, 2.0));
+    glm::mat4 R18y_1 = glm::rotate(I, glm::radians(18.0f), glm::vec3(0, 1, 0));
+    glm::mat4 M1 = T1*R18y_1;
+
+ // Matriz M2
+    glm::mat4 T2 = glm::translate(I, glm::vec3(1.0, 0.0, 1.0));
+    glm::mat4 R45xz_2 = glm::rotate(I, glm::radians(45.0f), glm::vec3(-1, 0, 1));
+    glm::mat4 R45y_2 = glm::rotate(I, glm::radians(45.0f), glm::vec3(0, 1, 0));
+    glm::mat4 M2 = T2*R45xz_2*R45y_2;
+
  // Dibujamos la escena
     drawPlane(P,V,I);
+    // drawModel(P,V,I*M1);  // a
+    // drawModel(P,V,I*M2);  // b
     drawModel(P,V,I);
 
  // Intercambiamos los buffers
@@ -161,7 +174,7 @@ void drawCone(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
-void drawFrustum(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
+void drawBody(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, 2.1, 0.0));
     glm::mat4 S = glm::scale(I, glm::vec3(0.094, 0.27, 0.094));
@@ -172,7 +185,7 @@ void drawFrustum(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 void drawBase(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, 1, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.5, 0.05, 0.5));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.6, 0.05, 0.6));
     drawObject(cylinder,glm::vec3(1.0, 1.0, 0.0),P,V,M*S*T);
 
 }
@@ -229,7 +242,7 @@ void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, 1.3, 0.0));
     drawBase(P,V,M);
-    drawFrustum(P,V,M);
+    drawBody(P,V,M);
     drawTop(P,V,M*T);
 
 }
