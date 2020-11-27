@@ -27,10 +27,10 @@ void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M);
    Shaders shaders;
 
 // Modelos
-   Model plane;
-   Model cone;
-   Model cylinder;
-   Model sphere;
+   Model plane; //2*2*2
+   Model cone;  //5.37*4.85*5.37
+   Model cylinder;  //2*2*2
+   Model sphere;    //2*2*2
 
 // Viewport
    int w = 600;
@@ -155,7 +155,7 @@ void drawPlane(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 void drawCone(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, -2.8, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.013, 0.08, 0.04));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.012, 0.068, 0.038));
     glm::mat4 R90 = glm::rotate(I, glm::radians(90.0f), glm::vec3(0, 0, 1));
     drawObject(cone,glm::vec3(1.0, 0.0, 0.0),P,V,M*R90*S*T);
 
@@ -164,7 +164,7 @@ void drawCone(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 void drawFrustum(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, 2.1, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.08, 0.2, 0.08));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.094, 0.027, 0.094));
     drawObject(cone,glm::vec3(0.9, 0.4, 0.0),P,V,M*S*T);
 
 }
@@ -172,7 +172,7 @@ void drawFrustum(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 void drawBase(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, 1, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.6, 0.05, 0.6));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.5, 0.05, 0.5));
     drawObject(cylinder,glm::vec3(1.0, 1.0, 0.0),P,V,M*S*T);
 
 }
@@ -180,7 +180,7 @@ void drawBase(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 void drawCylinder(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, -1.0, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.06, 0.5, 0.06));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.05, 0.5, 0.05));
     glm::mat4 R90 = glm::rotate(I, glm::radians(90.0f), glm::vec3(0, 0, 1));
     drawObject(cylinder,glm::vec3(0.0, 0.0, 1.0),P,V,M*R90*S*T);
 
@@ -188,7 +188,7 @@ void drawCylinder(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 void drawSphere(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
-    glm::mat4 S = glm::scale(I, glm::vec3(0.4, 0.4, 0.4));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.3, 0.3, 0.3));
     drawObject(sphere,glm::vec3(0.0, 1.0, 0.0),P,V,M*S);
 
 }

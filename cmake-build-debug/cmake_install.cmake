@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good
+# Install script for directory: C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

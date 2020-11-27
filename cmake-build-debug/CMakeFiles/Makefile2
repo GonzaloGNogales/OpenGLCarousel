@@ -54,19 +54,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\Users\gonza\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.8194.17\bin\cmake\win\bin\cmake.exe
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = C:\Users\gonza\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.8194.17\bin\cmake\win\bin\cmake.exe -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\gonza\CLionProjects\ComputerGraphics\practica1Good
+CMAKE_SOURCE_DIR = C:\InformaticaGraficaSesiones\Sesiones\OpenGLCarousel
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\gonza\CLionProjects\ComputerGraphics\practica1Good\cmake-build-debug
+CMAKE_BINARY_DIR = C:\InformaticaGraficaSesiones\Sesiones\OpenGLCarousel\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -93,14 +93,14 @@ clean: CMakeFiles/practica1Good.dir/clean
 CMakeFiles/practica1Good.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\practica1Good.dir\build.make CMakeFiles/practica1Good.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\practica1Good.dir\build.make CMakeFiles/practica1Good.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\gonza\CLionProjects\ComputerGraphics\practica1Good\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4 "Built target practica1Good"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\InformaticaGraficaSesiones\Sesiones\OpenGLCarousel\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4 "Built target practica1Good"
 .PHONY : CMakeFiles/practica1Good.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/practica1Good.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\gonza\CLionProjects\ComputerGraphics\practica1Good\cmake-build-debug\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\InformaticaGraficaSesiones\Sesiones\OpenGLCarousel\cmake-build-debug\CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/practica1Good.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\gonza\CLionProjects\ComputerGraphics\practica1Good\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\InformaticaGraficaSesiones\Sesiones\OpenGLCarousel\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/practica1Good.dir/rule
 
 # Convenience name for target.
@@ -120,7 +120,7 @@ CMakeFiles/practica1Good.dir/clean:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P C:\Users\gonza\CLionProjects\ComputerGraphics\practica1Good\cmake-build-debug\CMakeFiles\VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P C:\InformaticaGraficaSesiones\Sesiones\OpenGLCarousel\cmake-build-debug\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

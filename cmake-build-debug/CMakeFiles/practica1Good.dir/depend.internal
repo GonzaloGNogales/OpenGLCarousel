@@ -130,8 +130,8 @@ CMakeFiles/practica1Good.dir/src/Model.cpp.obj
  ../../libraries/includes/glm/vec4.hpp
  ../../libraries/includes/glm/vector_relational.hpp
  ../../libraries/includes/ogl/glew.h
- C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Model.cpp
- C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Model.h
+ C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Model.cpp
+ C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Model.h
 CMakeFiles/practica1Good.dir/src/Shaders.cpp.obj
  ../../libraries/includes/glm/common.hpp
  ../../libraries/includes/glm/detail/_fixes.hpp
@@ -235,8 +235,8 @@ CMakeFiles/practica1Good.dir/src/Shaders.cpp.obj
  ../../libraries/includes/glm/vec4.hpp
  ../../libraries/includes/glm/vector_relational.hpp
  ../../libraries/includes/ogl/glew.h
- C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Shaders.cpp
- C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Shaders.h
+ C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Shaders.cpp
+ C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Shaders.h
 CMakeFiles/practica1Good.dir/src/main.cpp.obj
  ../../libraries/includes/assimp/Compiler/poppack1.h
  ../../libraries/includes/assimp/Compiler/pstdint.h
@@ -371,6 +371,6 @@ CMakeFiles/practica1Good.dir/src/main.cpp.obj
  ../../libraries/includes/ogl/freeglut_ext.h
  ../../libraries/includes/ogl/freeglut_std.h
  ../../libraries/includes/ogl/glew.h
- C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Model.h
- C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/Shaders.h
- C:/Users/gonza/CLionProjects/ComputerGraphics/practica1Good/src/main.cpp
+ C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Model.h
+ C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/Shaders.h
+ C:/InformaticaGraficaSesiones/Sesiones/OpenGLCarousel/src/main.cpp
