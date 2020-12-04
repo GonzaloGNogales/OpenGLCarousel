@@ -14,6 +14,7 @@ void helixAutoRotation(int value);
 void cameraZoom(int key, int status, int x, int y);
 void cameraMovement(int x, int y);
 void moveModel(unsigned char key, int x, int y);
+void traslation(int key, int x, int y);
 
 void drawObject(Model model, glm::vec3 color, glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawPlane(glm::mat4 P, glm::mat4 V, glm::mat4 M);
@@ -30,6 +31,8 @@ void drawBase(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawBodyAndTop(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawExtreme(glm::mat4 P, glm::mat4 V, glm::mat4 M);
+
+
 
  // Shaders
     Shaders shaders;
@@ -48,11 +51,16 @@ void drawExtreme(glm::mat4 P, glm::mat4 V, glm::mat4 M);
     GLint speed = 20;  // 20 ms
     float rotY = 0.0;
     float zoom = 60.0;
-    float alphaX = 300.0;
+    float alphaX = 0.0;
     float alphaY = 0.0;
     float rotY_b_t = 0.0;
     float rotArms = 0.0;
     float movTop = 1.3;
+    float movX= 0.0;
+    float movZ= 0.0;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 int main(int argc, char** argv) {
 
@@ -87,8 +95,9 @@ int main(int argc, char** argv) {
     glutMouseFunc(cameraZoom);
     glutMotionFunc(cameraMovement);
     glutKeyboardFunc(moveModel);
+    glutSpecialFunc(traslation);
 
- // Bucle principal
+    // Bucle principal
     glutMainLoop();
 
     return 0;
@@ -131,6 +140,7 @@ void funDisplay() {
  // Indicamos los shaders a utilizar
     shaders.useShaders();
 
+//----------------------------------------------   MATRICES    ----------------------------------------------
  // Matriz P
     float fovy   = zoom;
     float nplane = 0.1;
@@ -158,12 +168,16 @@ void funDisplay() {
     glm::mat4 R45xz_2 = glm::rotate(I, glm::radians(45.0f), glm::vec3(-1, 0, 1));
     glm::mat4 R45y_2 = glm::rotate(I, glm::radians(45.0f), glm::vec3(0, 1, 0));
     glm::mat4 M2 = T2*R45xz_2*R45y_2;
+//-------------------------------------------------------------------------------------------------------------\\
+
 
  // Dibujamos la escena
     drawPlane(P,V,I);
     // drawModel(P,V,I*M1);  // a
     // drawModel(P,V,I*M2);  // b
-    drawModel(P,V,I);
+
+    glm::mat4 T = glm::translate(I, glm::vec3(movX, 0.0, movZ));
+    drawModel(P,V,I*T);
     // drawArm(P,V,I);
 
  // Intercambiamos los buffers
@@ -185,6 +199,8 @@ void drawObject(Model model, glm::vec3 color, glm::mat4 P, glm::mat4 V, glm::mat
 
 }
 
+//----------------------------------------------      fDibujado_módulos     ----------------------------------------------
+
 void drawPlane(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 S = glm::scale(I, glm::vec3(2.0, 1.0, 2.0));
@@ -192,12 +208,11 @@ void drawPlane(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
-void drawCone(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
+void drawBase(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
-    glm::mat4 T = glm::translate(I, glm::vec3(0.0, -2.8, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.012, 0.062, 0.038));
-    glm::mat4 R90 = glm::rotate(I, glm::radians(90.0f), glm::vec3(0, 0, 1));
-    drawObject(cone,glm::vec3(1.0, 0.0, 0.0),P,V,M*R90*S*T);
+    glm::mat4 T = glm::translate(I, glm::vec3(0.0, 1, 0.0));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.6, 0.05, 0.6));
+    drawObject(cylinder,glm::vec3(1.0, 1.0, 0.0),P,V,M*S*T);
 
 }
 
@@ -209,11 +224,12 @@ void drawBody(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
-void drawBase(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
+void drawCone(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
-    glm::mat4 T = glm::translate(I, glm::vec3(0.0, 1, 0.0));
-    glm::mat4 S = glm::scale(I, glm::vec3(0.6, 0.05, 0.6));
-    drawObject(cylinder,glm::vec3(1.0, 1.0, 0.0),P,V,M*S*T);
+    glm::mat4 T = glm::translate(I, glm::vec3(0.0, -2.8, 0.0));
+    glm::mat4 S = glm::scale(I, glm::vec3(0.012, 0.062, 0.038));
+    glm::mat4 R90 = glm::rotate(I, glm::radians(90.0f), glm::vec3(0, 0, 1));
+    drawObject(cone,glm::vec3(1.0, 0.0, 0.0),P,V,M*R90*S*T);
 
 }
 
@@ -241,31 +257,6 @@ void drawSphere(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
-void drawArticulation(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
-
-    glm::mat4 S = glm::scale(I, glm::vec3(0.075, 0.075, 0.075));
-    drawObject(sphere,glm::vec3(1.0, 0.0, 1.0),P,V,M*S);
-
-}
-
-void drawArm(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
-
-    glm::mat4 T = glm::translate(I, glm::vec3(1.0, 0.0, 0.0));
-    glm::mat4 R_antiR = glm::rotate(I, glm::radians(rotArms), glm::vec3(0, 0, 1));
-    drawCylinder(P,V,M);
-    drawArticulation(P,V,M*T);
-    drawExtreme(P,V,M*T*R_antiR);
-
-}
-
-void drawExtreme(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
-
-    glm::mat4 Ty_helix = glm::translate(I, glm::vec3(0.0, -0.3, 0.0));
-    glm::mat4 R45 = glm::rotate(I, glm::radians(45.0f), glm::vec3(0, 1, 0));
-    drawLittleCylinder(P,V,M);
-    drawHelix(P,V,M*Ty_helix*R45);
-
-}
 
 void drawHelix(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
@@ -278,6 +269,32 @@ void drawHelix(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
+
+void drawArticulation(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
+
+    glm::mat4 S = glm::scale(I, glm::vec3(0.075, 0.075, 0.075));
+    drawObject(sphere,glm::vec3(1.0, 0.0, 1.0),P,V,M*S);
+
+}
+
+void drawExtreme(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
+
+    glm::mat4 Ty_helix = glm::translate(I, glm::vec3(0.0, -0.3, 0.0));
+    glm::mat4 R45 = glm::rotate(I, glm::radians(45.0f), glm::vec3(0, 1, 0));
+    drawLittleCylinder(P,V,M);
+    drawHelix(P,V,M*Ty_helix*R45);
+
+}
+
+void drawArm(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
+
+    glm::mat4 T = glm::translate(I, glm::vec3(1.0, 0.0, 0.0));
+    glm::mat4 R_antiR = glm::rotate(I, glm::radians(rotArms), glm::vec3(0, 0, 1));
+    drawCylinder(P,V,M);
+    drawArticulation(P,V,M*T);
+    drawExtreme(P,V,M*T*R_antiR);
+
+}
 
 void drawTop(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
@@ -292,14 +309,6 @@ void drawTop(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
-void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
-
-    glm::mat4 R = glm::rotate(I, glm::radians(rotY_b_t), glm::vec3(0, 1, 0));
-    drawBase(P,V,M);
-    drawBodyAndTop(P,V,M*R);
-
-}
-
 void drawBodyAndTop(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 T = glm::translate(I, glm::vec3(0.0, movTop, 0.0));
@@ -308,11 +317,22 @@ void drawBodyAndTop(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
+void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
+
+    glm::mat4 R = glm::rotate(I, glm::radians(rotY_b_t), glm::vec3(0, 1, 0));
+    drawBase(P,V,M);
+    drawBodyAndTop(P,V,M*R);
+
+}
+
+
+//----------------------------------------------      fAnimaciones      ----------------------------------------------
 void helixAutoRotation(int value) {
 
     rotY -= 2.5;
     glutPostRedisplay();
     glutTimerFunc(speed, helixAutoRotation ,0);
+
 
 }
 
@@ -336,8 +356,14 @@ void cameraZoom(int key, int status, int x, int y) {
 void cameraMovement(int x, int y) {
 
     // REVIEW
-    alphaX = 90*x/(w/2);
-    alphaY = 45*y/(h/2);
+    int ax=x-w/2;   //w/2px=90º; w=180º;  1px=?
+    int ay=y-h/2;
+
+    int pxlAgradosX= ax*180/w;
+    int pxlAgradosY= ay*90/(h/2);
+
+    if(pxlAgradosX<180 && pxlAgradosX>-180) alphaX = pxlAgradosX;
+    if(pxlAgradosY<90 && pxlAgradosY>-90) alphaY = -pxlAgradosY;
     glutPostRedisplay();
 
 }
@@ -365,4 +391,22 @@ void moveModel(unsigned char key, int x, int y) {
         default:
             break;
     }
+    glutPostRedisplay();
 }
+
+void traslation(int key, int x, int y){
+    switch (key) {
+        case GLUT_KEY_LEFT:  if(movX > -1.4) movX-=0.1;
+            break;
+        case GLUT_KEY_RIGHT: if(movX < 1.4) movX+=0.1;
+            break;
+        case GLUT_KEY_UP: if(movZ > -1.4) movZ-=0.1;
+            break;
+        case GLUT_KEY_DOWN: if(movZ < 1.4) movZ+=0.1;
+            break;
+        default:
+            break;
+    }
+    glutPostRedisplay();
+}
+
