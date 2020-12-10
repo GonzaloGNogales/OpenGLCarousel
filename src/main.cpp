@@ -33,21 +33,20 @@ void drawBodyAndTop(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawExtreme(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 
 
-
- // Shaders
+ // Shaders variable
     Shaders shaders;
 
- // Modelos
+ // Model variables
     Model plane;     // 2*2*2
     Model cone;      // 5.37*4.85*5.37
     Model cylinder;  // 2*2*2
     Model sphere;    // 2*2*2
 
- // Viewport
+ // Viewport variables
     int w = 600;
     int h = 600;
 
- // Animaciones
+ // Animation variables
     GLint speed = 20;  // 20 ms
     float rotY = 0.0;
     float zoom = 60.0;
@@ -64,7 +63,7 @@ void drawExtreme(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 
 int main(int argc, char** argv) {
 
- // Inicializamos GLUT
+ // GLUT init
     glutInit(&argc, argv);
     glutInitContextVersion(3,3);
     glutInitContextFlags(GLUT_FORWARD_COMPATIBLE);
@@ -74,7 +73,7 @@ int main(int argc, char** argv) {
     glutInitWindowPosition(50,50);
     glutCreateWindow("Practica 2");
 
- // Inicializamos GLEW
+ // GLEW init
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
     if(GLEW_OK != err) {
@@ -85,10 +84,10 @@ int main(int argc, char** argv) {
     const GLubyte *oglVersion = glGetString(GL_VERSION);
     std::cout <<"This system supports OpenGL Version: " << oglVersion << std::endl;
 
- // Inicializaciones específicas
+ // Specific initializations
     funInit();
 
- // Configuración CallBacks
+ // CallBacks configuration
     glutReshapeFunc(funReshape);
     glutDisplayFunc(funDisplay);
     glutTimerFunc(speed, helixAutoRotation, 0);
@@ -97,7 +96,7 @@ int main(int argc, char** argv) {
     glutKeyboardFunc(moveModel);
     glutSpecialFunc(traslation);
 
-    // Bucle principal
+ // Main loop
     glutMainLoop();
 
     return 0;
@@ -105,14 +104,14 @@ int main(int argc, char** argv) {
 
 void funInit() {
 
- // Test de profundidad
+ // Depth test
     glEnable(GL_DEPTH_TEST);
     glPolygonOffset(1.0,1.0);
 
  // Shaders
     shaders.initShaders("resources/shaders/vshader.glsl","resources/shaders/fshader.glsl");
 
- // Modelos
+ // Models
     plane.initModel("resources/models/plane.obj");
     cone.initModel("resources/models/cone.obj");
     cylinder.initModel("resources/models/cylinder.obj");
@@ -122,10 +121,10 @@ void funInit() {
 
 void funReshape(int wnew, int hnew) {
 
- // Configuración del Viewport
+ // Viewport configuration
     glViewport(0, 0, wnew, hnew);
 
- // Actualización de w y h
+ // w & h update
     w = wnew;
     h = hnew;
 
@@ -133,23 +132,23 @@ void funReshape(int wnew, int hnew) {
 
 void funDisplay() {
 
- // Borramos el buffer de color
+ // Erase the color buffer
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
- // Indicamos los shaders a utilizar
+ // Declare the shaders
     shaders.useShaders();
 
-//----------------------------------------------   MATRICES    ----------------------------------------------
- // Matriz P
+// ----------------------------------------------      MATRIX     ----------------------------------------------
+
+ // Matrix P
     float fovy   = zoom;
     float nplane = 0.1;
     float fplane = 25.0;
     float aspect = (float)w/(float)h;
     glm::mat4 P = glm::perspective(glm::radians(fovy), aspect, nplane, fplane);
 
- // Matriz V
-
+ // Matrix V
     float x = 5.0f*glm::cos(glm::radians(alphaY))*glm::sin(glm::radians(alphaX));
     float y = 5.0f*glm::sin(glm::radians(alphaY));
     float z = 5.0f*glm::cos(glm::radians(alphaY))*glm::cos(glm::radians(alphaX));
@@ -158,20 +157,20 @@ void funDisplay() {
     glm::vec3 up(0.0, 1.0,  0.0);
     glm::mat4 V = glm::lookAt(pos, lookat, up);
 
- // Matriz M1
+ // Matrix M1
     glm::mat4 T1 = glm::translate(I, glm::vec3(2.0, 0.0, 2.0));
     glm::mat4 R18y_1 = glm::rotate(I, glm::radians(18.0f), glm::vec3(0, 1, 0));
     glm::mat4 M1 = T1*R18y_1;
 
- // Matriz M2
+ // Matrix M2
     glm::mat4 T2 = glm::translate(I, glm::vec3(1.0, 0.0, 1.0));
     glm::mat4 R45xz_2 = glm::rotate(I, glm::radians(45.0f), glm::vec3(-1, 0, 1));
     glm::mat4 R45y_2 = glm::rotate(I, glm::radians(45.0f), glm::vec3(0, 1, 0));
     glm::mat4 M2 = T2*R45xz_2*R45y_2;
-//-------------------------------------------------------------------------------------------------------------\\
 
+// ------------------------------------------------------------------------------------------------------------------ \\
 
- // Dibujamos la escena
+ // Draw the scene
     drawPlane(P,V,I);
     // drawModel(P,V,I*M1);  // a
     // drawModel(P,V,I*M2);  // b
@@ -180,7 +179,7 @@ void funDisplay() {
     drawModel(P,V,I*T);
     // drawArm(P,V,I);
 
- // Intercambiamos los buffers
+ // Swap buffers
     glutSwapBuffers();
 
 }
@@ -199,7 +198,7 @@ void drawObject(Model model, glm::vec3 color, glm::mat4 P, glm::mat4 V, glm::mat
 
 }
 
-//----------------------------------------------      fDibujado_módulos     ----------------------------------------------
+// ----------------------------------------------      Drawing Models Functions     ----------------------------------------------
 
 void drawPlane(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
@@ -269,7 +268,6 @@ void drawHelix(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
-
 void drawArticulation(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
     glm::mat4 S = glm::scale(I, glm::vec3(0.075, 0.075, 0.075));
@@ -325,20 +323,18 @@ void drawModel(glm::mat4 P, glm::mat4 V, glm::mat4 M) {
 
 }
 
+// ----------------------------------------------      Animation Functions     ----------------------------------------------
 
-//----------------------------------------------      fAnimaciones      ----------------------------------------------
 void helixAutoRotation(int value) {
 
     rotY -= 2.5;
     glutPostRedisplay();
     glutTimerFunc(speed, helixAutoRotation ,0);
 
-
 }
 
 void cameraZoom(int key, int status, int x, int y) {
 
-    // key -> 0 click izq || 2 click der || 3 mouse wheel up || 4 mouse wheel down
     switch (key) {
         case 4:
             if (zoom < 60) zoom += 1;
@@ -355,20 +351,20 @@ void cameraZoom(int key, int status, int x, int y) {
 
 void cameraMovement(int x, int y) {
 
-    // REVIEW
-    int ax=x-w/2;   //w/2px=90º; w=180º;  1px=?
-    int ay=y-h/2;
+    int ax = x - w / 2;
+    int ay = y - h / 2;
 
-    int pxlAgradosX= ax*180/w;
-    int pxlAgradosY= ay*90/(h/2);
+    int px2degX = ax * 180 / w;
+    int px2degY = ay * 90 / (h/2);
 
-    if(pxlAgradosX<180 && pxlAgradosX>-180) alphaX = pxlAgradosX;
-    if(pxlAgradosY<90 && pxlAgradosY>-90) alphaY = -pxlAgradosY;
+    if(px2degX < 180 && px2degX > -180) alphaX = px2degX;
+    if(px2degY < 90 && px2degY > -90) alphaY = -px2degY;
     glutPostRedisplay();
 
 }
 
 void moveModel(unsigned char key, int x, int y) {
+
     switch (key) {
         case 'r':
             rotY_b_t += 5;
@@ -392,21 +388,23 @@ void moveModel(unsigned char key, int x, int y) {
             break;
     }
     glutPostRedisplay();
+
 }
 
 void traslation(int key, int x, int y){
+
     switch (key) {
-        case GLUT_KEY_LEFT:  if(movX > -1.4) movX-=0.1;
+        case GLUT_KEY_LEFT:  if(movX > -1.4) movX -= 0.1;
             break;
-        case GLUT_KEY_RIGHT: if(movX < 1.4) movX+=0.1;
+        case GLUT_KEY_RIGHT: if(movX < 1.4) movX += 0.1;
             break;
-        case GLUT_KEY_UP: if(movZ > -1.4) movZ-=0.1;
+        case GLUT_KEY_UP: if(movZ > -1.4) movZ -= 0.1;
             break;
-        case GLUT_KEY_DOWN: if(movZ < 1.4) movZ+=0.1;
+        case GLUT_KEY_DOWN: if(movZ < 1.4) movZ += 0.1;
             break;
         default:
             break;
     }
     glutPostRedisplay();
-}
 
+}
